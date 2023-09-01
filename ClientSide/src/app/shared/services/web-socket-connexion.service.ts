@@ -11,7 +11,7 @@ export class WebSocketConnexionService {
   private roomCode: string = '';
 
   constructor() {
-    this.socket$ = webSocket('ws://localhost:3000');
+    this.socket$ = webSocket('ws://192.168.1.7:3000');
   }
 
   getSocket(): Observable<any> {
@@ -21,6 +21,13 @@ export class WebSocketConnexionService {
   createRoom() {
     const message = {
       type: 'createRoom'
+    };
+    this.socket$.next(message);
+  }
+
+  jump() {
+    const message = {
+      type: 'jump'
     };
     this.socket$.next(message);
   }

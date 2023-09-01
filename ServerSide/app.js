@@ -82,6 +82,19 @@ wss.on('connection', (socket) => {
                     // Le socket ne fait pas partie d'une salle, traitement alternatif...
                 }
             }
+            else if (data.type === 'jump') {
+                const room = Array.from(rooms.keys()).find(roomCode => rooms.get(roomCode).includes(socketId));
+                if (room) {
+                    const roomSockets = rooms.get(room);
+                    for (const roomId of roomSockets) {
+                        const roomSocket = connections.get(roomId);
+                        const chatMessage = JSON.stringify({ type: 'jump' });
+                        roomSocket.send(chatMessage);
+                    }
+                } else {
+                    // Le socket ne fait pas partie d'une salle, traitement alternatif...
+                }
+            }
             else {
                 // Traitements pour les autres types de messages
             }

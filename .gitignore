@@ -22,7 +22,7 @@ ClientSide/.settings/
 ClientSide/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+ClientSide/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
