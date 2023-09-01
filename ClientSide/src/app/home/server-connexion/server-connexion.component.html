@@ -1,0 +1,6 @@
+<button mat-raised-button color="primary" (click)="createRoom()">Create Room</button>
+
+<mat-form-field>
+    <input matInput [(ngModel)]="roomCode" placeholder="Code d'accès">
+</mat-form-field>
+<button mat-raised-button color="accent" (click)="joinRoom()">Rejoindre la salle</button>

@@ -7,18 +7,19 @@
 /bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+ClientSide/node_modules
+ServerSide/node_modules
+ClientSide/npm-debug.log
+ClientSide/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+ClientSide/.idea/
+ClientSide/.project
+ClientSide/.classpath
+ClientSide/.c9/
+ClientSide/*.launch
+ClientSide/.settings/
+ClientSide/*.sublime-workspace
 
 # Visual Studio Code
 .vscode/*
@@ -29,14 +30,14 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+ClientSide/.angular/cache
+ClientSide/.sass-cache/
+ClientSide/connect.lock
+/ClientSide/coverage
+ClientSide/libpeerconnection.log
+ClientSide/testem.log
+ClientSide/typings
 
 # System files
-.DS_Store
-Thumbs.db
+ClientSide/.DS_Store
+ClientSide/Thumbs.db

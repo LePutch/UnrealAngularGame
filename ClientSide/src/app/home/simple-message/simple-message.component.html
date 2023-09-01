@@ -1,0 +1,8 @@
+<form class="min-w-full" (ngSubmit)="sendMessage(message.value)">
+    <mat-form-field class="w-80">
+        <mat-label>Message</mat-label>
+        <input matInput #message maxlength="256" placeholder="Ex. I need help with..." required>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Send</button>
+</form>

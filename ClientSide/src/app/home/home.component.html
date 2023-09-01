@@ -1,0 +1,3 @@
+<app-header></app-header>
+<app-server-connexion (connexionStatus)="handleConnexionStatus($event)"></app-server-connexion>
+<app-simple-message *ngIf="connected"></app-simple-message>
