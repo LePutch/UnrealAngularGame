@@ -8,6 +8,18 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
   connected: boolean = false;
+  qrCode: boolean = false;
+  joiningRoom: string = '';
+
+  ngOnInit() {
+    // check the url to see if we have the option "room" in it
+    const urlParams = new URLSearchParams(window.location.search);
+    const room = urlParams.get('room');
+    if (room) {
+      this.qrCode = true;
+      this.joiningRoom = room;
+    }
+  }
 
   handleConnexionStatus(status: string) {
     switch (status) {

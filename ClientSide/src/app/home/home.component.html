@@ -1,5 +1,9 @@
-<div class="flex flex-col items-center gap-4">
+<div *ngIf="!qrCode" class="flex flex-col items-center gap-4">
     <app-header class="pt-8"></app-header>
     <app-server-connexion (connexionStatus)="handleConnexionStatus($event)"></app-server-connexion>
     <app-simple-message *ngIf="connected"></app-simple-message>
+</div>
+
+<div *ngIf="qrCode">
+    <app-joining-room [roomCode]="joiningRoom"></app-joining-room>
 </div>

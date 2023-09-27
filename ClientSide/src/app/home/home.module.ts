@@ -4,12 +4,14 @@ import { SharedModule } from '../shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { SimpleMessageComponent } from './simple-message/simple-message.component';
 import { ServerConnexionComponent } from './server-connexion/server-connexion.component';
+import { JoiningRoomComponent } from './joining-room/joining-room.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SimpleMessageComponent,
-    ServerConnexionComponent
+    ServerConnexionComponent,
+    JoiningRoomComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { ServerConnexionComponent } from './server-connexion/server-connexion.co
   exports: [
     HeaderComponent,
     SimpleMessageComponent,
-    ServerConnexionComponent
+    ServerConnexionComponent,
+    JoiningRoomComponent
   ]
 })
 export class HomeModule { }

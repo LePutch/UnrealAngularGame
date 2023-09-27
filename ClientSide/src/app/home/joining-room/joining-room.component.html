@@ -1,0 +1,10 @@
+<div class="h-screen bg-green-500">
+    <div *ngIf="connected" class="bg-red-500">
+        <div>
+            Je suis connecté :)
+            <app-header></app-header>
+        </div>
+    </div>
+    <div class="text-xl">{{ errorMessage }}</div>
+    <div>{{ message }}</div>
+</div>
