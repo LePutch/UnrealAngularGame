@@ -5,7 +5,8 @@ const http = require('http');
 const WebSocketServer = require('./websocket-server');
 const { getIP, generateQRCode } = require('./utils');
 const { v4: uuidv4 } = require('uuid');
-const qrcode = require('qrcode');
+const QRCode = require('qrcode-svg');
+const svg2img = require('svg2img');
 
 const app = express();
 const server = http.createServer(app);
@@ -24,39 +25,40 @@ const webSocketServer = new WebSocketServer(server);
 // });
 
 
-app.get('/downloadQRCode/:roomCode', async (req, res) => {
+app.get('/downloadQRCode/:roomCode', (req, res) => {
     const roomCode = req.params.roomCode;
-    console.log('try to download', roomCode);
+    console.log('Try to download', roomCode);
 
     const link = `http://${IP_Server}:${portClient}?room=${roomCode}`;
 
     try {
-        const qrCodeBuffer = await generateQRCode2(link);
-        res.set('Content-Type', 'image/png');
-        res.send(qrCodeBuffer);
+        const qrCodeSVG = generateQRCode2(link);
+
+        svg2img(qrCodeSVG, (error, buffer) => {
+            if (error) {
+                console.error('Erreur lors de la conversion en PNG :', error);
+                res.status(500).send('Erreur lors de la conversion en PNG.');
+            } else {
+                res.set('Content-Type', 'image/png');
+                res.send(buffer);
+            }
+        });
     } catch (err) {
         console.error('Erreur lors de la génération du QR code :', err);
         res.status(500).send('Erreur lors de la génération du QR code.');
     }
 });
 
-async function generateQRCode2(link) {
-    return new Promise((resolve, reject) => {
-        qrcode.toBuffer(link, {
-            color: {
-                dark: '#00F',
-                light: '#0000'
-            }
-        }, function (err, buffer) {
-            if (err) {
-                reject(err);
-            } else {
-                console.log('QR code généré avec succès');
-                resolve(buffer);
-            }
-        });
+function generateQRCode2(link) {
+    const qr = new QRCode(link, {
+        width: 300,
+        height: 300,
+        color: '#000',
+        background: 'transparent'
     });
+    return qr.svg();
 }
+
 
 server.listen(port, () => {
     console.log('Server listening on port ' + port);

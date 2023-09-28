@@ -51,11 +51,27 @@ class WebSocketServer {
                 this.handleChat(socketId, data.content);
             } else if (data.type === 'jump') {
                 this.handleJump(socketId);
+            } else if (data.type === 'basicMessage') {
+                this.handleBasicMessage(socketId, data.content);
             } else {
                 // handle other message types here
             }
         } catch (error) {
             console.error('Error parsing JSON:', error);
+        }
+    }
+
+    handleBasicMessage(socketId, content) {
+        const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
+        if (room) {
+            const roomSockets = this.rooms.get(room);
+            for (const roomId of roomSockets) {
+                const roomSocket = this.connections.get(roomId);
+                const chatMessage = JSON.stringify({ type: 'basicMessage', message: content });
+                roomSocket.send(chatMessage);
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
         }
     }
 

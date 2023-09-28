@@ -11,7 +11,7 @@ export class WebSocketConnexionService {
   private roomCode: string = '';
 
   constructor() {
-    this.socket$ = webSocket('ws://192.168.1.7:3000');
+    this.socket$ = webSocket('ws://alwayswithyou.kookis.ovh');
   }
 
   getSocket(): Observable<any> {
@@ -45,6 +45,14 @@ export class WebSocketConnexionService {
       type: 'chat',
       roomCode: this.roomCode,
       content: content
+    };
+    this.socket$.next(message);
+  }
+
+  sendBasicMessage(mess: string) {
+    const message = {
+      type: "basicMessage",
+      content: mess
     };
     this.socket$.next(message);
   }

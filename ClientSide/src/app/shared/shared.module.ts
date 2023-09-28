@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { WebSocketConnexionService } from './services/web-socket-connexion.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { WebSocketConnexionService } from './services/web-socket-connexion.servi
     CommonModule,
     MatButtonModule,
     MatSlideToggleModule,
+    MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
@@ -20,6 +22,7 @@ import { WebSocketConnexionService } from './services/web-socket-connexion.servi
   exports: [
     MatButtonModule,
     MatSlideToggleModule,
+    MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,

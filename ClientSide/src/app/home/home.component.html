@@ -3,6 +3,7 @@
     <app-server-connexion (connexionStatus)="handleConnexionStatus($event)"></app-server-connexion>
     <app-simple-message *ngIf="connected"></app-simple-message>
 </div>
+<div id="particles-js"></div>
 
 <div *ngIf="qrCode">
     <app-joining-room [roomCode]="joiningRoom"></app-joining-room>

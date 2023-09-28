@@ -20,6 +20,7 @@ export class JoiningRoomComponent {
   constructor(private websocketService: WebSocketConnexionService) { }
 
   ngOnInit() {
+    this.generateStars();
     this.websocketService.getSocket()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -40,6 +41,19 @@ export class JoiningRoomComponent {
     this.joinRoom();
   }
 
+  private generateStars() {
+    const starsContainer = document.querySelector('.stars') as HTMLElement;
+    const numStars = 100; // Nombre d'étoiles à générer
+
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
+    }
+  }
+
   messageHandler(message: any) {
     if (message.type === 'error') {
       this.errorMessage = message.message;
@@ -48,6 +62,14 @@ export class JoiningRoomComponent {
       this.message = message.message;
       this.connected = true;
     }
+  }
+
+  SendGreenLantern() {
+    this.websocketService.sendBasicMessage('greenLantern');
+  }
+
+  SendRedLantern() {
+    this.websocketService.sendBasicMessage('redLantern');
   }
 
   ngOnDestroy() {
