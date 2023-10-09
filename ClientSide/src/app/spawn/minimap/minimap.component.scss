@@ -1,0 +1,16 @@
+.minimap-container {
+    position: relative;
+}
+
+#minimapCanvas {
+    background-image: url('/assets/minimap-background.png');
+    background-size: cover;
+}
+
+.character-marker {
+    position: absolute;
+    background-image: url('/assets/character.png');
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}

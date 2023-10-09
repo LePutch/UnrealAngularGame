@@ -1,0 +1,18 @@
+<div class="h-full bg-teal-700 text-white" #hTotDiv>
+    <div class="h-1/3 w-full flex items-center justify-center">
+        <div class="rounded-full" [ngClass]="{ 'circle': true, 'clickable': variableLevel >= 10 }"
+            (click)="onCircleClick(1)">
+            <img src="../../assets/rune1.png" alt="Rune 1">
+        </div>
+    </div>
+    <div class="h-1/3 w-full flex items-center justify-center">
+        <div [ngClass]="{ 'circle': true, 'clickable': variableLevel >= 10 }" (click)="onCircleClick(2)">
+            <img src="../../assets/rune1.png" alt="Rune 1">
+        </div>
+    </div>
+    <div class="h-1/3 w-full flex items-center justify-center">
+        <div [ngClass]="{ 'circle': true, 'clickable': variableLevel >= 10 }" (click)="onCircleClick(3)">
+            <img src="../../assets/rune1.png" alt="Rune 1">
+        </div>
+    </div>
+</div>

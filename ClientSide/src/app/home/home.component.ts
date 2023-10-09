@@ -1,16 +1,18 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-declare var particlesJS: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit, OnInit {
+export class HomeComponent implements OnInit {
 
   connected: boolean = false;
-  qrCode: boolean = true;
+  qrCode: boolean = false;
   joiningRoom: string = '';
+
+  @Output()
+  phase1 = new EventEmitter();
 
   ngOnInit() {
     // check the url to see if we have the option room in it
@@ -22,9 +24,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    this.initParticles();
-  }
+
 
   handleConnexionStatus(status: string) {
     switch (status) {
@@ -40,118 +40,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
     }
   }
 
-  private initParticles() {
-    particlesJS('particles-js',
-      {
-        particles: {
-          number: {
-            value: 160,
-            density: {
-              enable: true,
-              value_area: 800
-            }
-          },
-          color: {
-            value: '#ffffff'
-          },
-          shape: {
-            type: 'circle',
-            stroke: {
-              width: 0,
-              color: '#000000'
-            },
-            polygon: {
-              nb_sides: 5
-            },
-            image: {
-              src: 'img/github.svg',
-              width: 100,
-              height: 100
-            }
-          },
-          opacity: {
-            value: 1,
-            random: true,
-            anim: {
-              enable: true,
-              speed: 1,
-              opacity_min: 0,
-              sync: false
-            }
-          },
-          size: {
-            value: 3,
-            random: true,
-            anim: {
-              enable: false,
-              speed: 4,
-              size_min: 0.3,
-              sync: false
-            }
-          },
-          line_linked: {
-            enable: false,
-            distance: 150,
-            color: '#ffffff',
-            opacity: 0.4,
-            width: 1
-          },
-          move: {
-            enable: true,
-            speed: 1,
-            direction: 'none',
-            random: true,
-            straight: true,
-            out_mode: 'out',
-            bounce: false,
-            attract: {
-              enable: false,
-              rotateX: 600,
-              rotateY: 600
-            }
-          }
-        },
-        interactivity: {
-          detect_on: 'canvas',
-          events: {
-            onhover: {
-              enable: true,
-              mode: 'grab'
-            },
-            onclick: {
-              enable: true,
-              mode: 'push'
-            },
-            resize: true
-          },
-          modes: {
-            grab: {
-              distance: 400,
-              line_linked: {
-                opacity: 1
-              }
-            },
-            bubble: {
-              distance: 250,
-              size: 0,
-              duration: 2,
-              opacity: 0,
-              speed: 3
-            },
-            repulse: {
-              distance: 400,
-              duration: 0.4
-            },
-            push: {
-              particles_nb: 4
-            },
-            remove: {
-              particles_nb: 2
-            }
-          }
-        },
-        retina_detect: true
-      });
+  emitPhase1() {
+    this.phase1.emit();
   }
+
+
 
 }

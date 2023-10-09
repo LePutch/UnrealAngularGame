@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { WebSocketConnexionService } from 'src/app/shared/services/web-socket-connexion.service';
 
@@ -13,6 +13,9 @@ export class JoiningRoomComponent {
   @Input()
   roomCode: string = '';
 
+  @Output()
+  readyToPlay = new EventEmitter();
+
   connected: boolean = false;
   errorMessage: string = '';
   message: string = '';
@@ -20,7 +23,6 @@ export class JoiningRoomComponent {
   constructor(private websocketService: WebSocketConnexionService) { }
 
   ngOnInit() {
-    this.generateStars();
     this.websocketService.getSocket()
       .pipe(
         takeUntil(this.unsubscribe$)
@@ -41,18 +43,6 @@ export class JoiningRoomComponent {
     this.joinRoom();
   }
 
-  private generateStars() {
-    const starsContainer = document.querySelector('.stars') as HTMLElement;
-    const numStars = 100; // Nombre d'étoiles à générer
-
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      starsContainer.appendChild(star);
-    }
-  }
 
   messageHandler(message: any) {
     if (message.type === 'error') {
@@ -68,16 +58,31 @@ export class JoiningRoomComponent {
     this.websocketService.sendBasicMessage('greenLantern');
   }
 
+  SendCoords() {
+    this.websocketService.requestCoords();
+  }
+
   SendRedLantern() {
     this.websocketService.sendBasicMessage('redLantern');
   }
 
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
 
   joinRoom() {
     this.websocketService.joinRoom(this.roomCode);
   }
+
+  runPhase1() {
+    this.readyToPlay.emit();
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    }
+    if (window.screen.orientation) {
+      (window.screen.orientation as any).lock('landscape').catch((error: any) => {
+        console.error('Failed to lock screen orientation:', error);
+      });
+    }
+  }
+
+
 }

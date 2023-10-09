@@ -11,11 +11,18 @@ export class WebSocketConnexionService {
   private roomCode: string = '';
 
   constructor() {
-    this.socket$ = webSocket('ws://alwayswithyou.kookis.ovh');
+    this.socket$ = webSocket('ws://10.255.193.116:3000');
   }
 
   getSocket(): Observable<any> {
     return this.socket$.asObservable();
+  }
+
+  requestCoords() {
+    const message = {
+      type: 'coords'
+    };
+    this.socket$.next(message);
   }
 
   createRoom() {

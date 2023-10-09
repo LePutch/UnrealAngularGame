@@ -6,7 +6,7 @@ const { getIP, generateQRCode } = require('./utils');
 const { v4: uuidv4 } = require('uuid');
 
 const portClient = 8123;
-const IP_Server = '192.168.1.7';
+const IP_Server = '10.255.193.116';
 
 
 class WebSocketServer {
@@ -41,25 +41,54 @@ class WebSocketServer {
     handleMessage(socketId, message) {
         try {
             const data = JSON.parse(message);
-            console.log(`Received message from socket ${socketId}: ${message}`);
-
-            if (data.type === 'createRoom') {
-                this.handleCreateRoom(socketId);
-            } else if (data.type === 'joinRoom') {
-                this.handleJoinRoom(socketId, data.roomCode);
-            } else if (data.type === 'chat') {
-                this.handleChat(socketId, data.content);
-            } else if (data.type === 'jump') {
-                this.handleJump(socketId);
-            } else if (data.type === 'basicMessage') {
-                this.handleBasicMessage(socketId, data.content);
-            } else {
-                // handle other message types here
+            if (data.type !== 'coordsCharacter') {
+                console.log(`Received message from socket ${socketId}: ${message}`);
+            }
+            switch (data.type) {
+                case 'createRoom':
+                    this.handleCreateRoom(socketId);
+                    break;
+                case 'joinRoom':
+                    this.handleJoinRoom(socketId, data.roomCode);
+                    break;
+                case 'chat':
+                    this.handleChat(socketId, data.content);
+                    break;
+                case 'jump':
+                    this.handleJump(socketId);
+                    break;
+                case 'basicMessage':
+                    this.handleBasicMessage(socketId, data.content);
+                    break;
+                case 'coordsCharacter':
+                    this.handleCoords(socketId, data.content);
+                    break;
+                default:
+                    // handle other message types here
+                    break;
             }
         } catch (error) {
             console.error('Error parsing JSON:', error);
         }
     }
+
+    handleCoords(socketId, content) {
+        const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
+        if (room) {
+            const roomSockets = this.rooms.get(room);
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const chatMessage = JSON.stringify({ type: 'coords', message: content });
+                    roomSocket.send(chatMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+
 
     handleBasicMessage(socketId, content) {
         const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));

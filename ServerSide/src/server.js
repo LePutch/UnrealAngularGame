@@ -12,17 +12,10 @@ const app = express();
 const server = http.createServer(app);
 const port = 3000;
 const portClient = 8123;
-const IP_Server = '192.168.1.7';
+const IP_Server = '10.255.193.116';
 
 
 const webSocketServer = new WebSocketServer(server);
-
-// app.get('/downloadQRCode/:roomCode', (req, res) => {
-//     const roomCode = req.params.roomCode;
-//     console.log('try to download', roomCode);
-//     generateQRCode(IP_Server, portClient, roomCode);
-//     res.download('./qr.png');
-// });
 
 
 app.get('/downloadQRCode/:roomCode', (req, res) => {

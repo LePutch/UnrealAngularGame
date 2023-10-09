@@ -1,5 +1,4 @@
-<div class="flex flex-col items-center justify-center h-screen">
-    <div class="stars"></div>
+<div class="zindex fixed top-0 left-0 right-0 flex flex-col items-center pt-8 h-screen">
     <div class="text-3xl mb-4 text-white text-center">You'll always be with him...</div>
     <app-header></app-header>
     <div class=" flex flex-row items-center justify-center gap-4">
@@ -9,5 +8,11 @@
         <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="SendRedLantern()">
             <mat-icon>emoji_objects</mat-icon> Red
         </button>
+        <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="SendCoords()">
+            <mat-icon>location_on</mat-icon> Coordinates
+        </button>
     </div>
+    <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="runPhase1()">
+        <mat-icon>videogame_asset</mat-icon> Ready to play
+    </button>
 </div>

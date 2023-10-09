@@ -5,11 +5,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
-import { WebSocketConnexionService } from './services/web-socket-connexion.service';
 import { MatIconModule } from '@angular/material/icon';
+import { BackgroundParticlesComponent } from './background-particles/background-particles.component';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -26,6 +25,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    BackgroundParticlesComponent
+  ],
+  declarations: [
+    BackgroundParticlesComponent
   ],
 })
 export class SharedModule { }

@@ -1,0 +1,14 @@
+.circle {
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.clickable {
+    /* Ajoutez des styles pour les ronds cliquables ici */
+    background-color: teal;
+    /* Par exemple, changez la couleur de fond pour indiquer qu'ils sont cliquables */
+}
+
+/* Ajoutez d'autres styles et animations au besoin */
