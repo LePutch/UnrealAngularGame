@@ -14,15 +14,4 @@ export class BoardInfosComponent {
     this.phases = INITIAL_STATE;
   }
 
-  ngOnInit() {
-    // Récupérez la div dont vous voulez mesurer la largeur
-    const maDiv = document.querySelector('.hexaWidth') as HTMLElement;
-
-    // Récupérez sa largeur calculée en pixels
-    const largeurDiv = maDiv.offsetWidth;
-
-    // Mettez à jour une variable CSS avec la largeur calculée
-    document.documentElement.style.setProperty('--hexa-width', `${largeurDiv}px`);
-  }
-
 }

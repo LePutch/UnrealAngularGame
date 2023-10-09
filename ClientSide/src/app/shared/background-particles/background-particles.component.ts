@@ -21,12 +21,10 @@ export class BackgroundParticlesComponent {
   }
 
   private initParticles() {
-    console.log('init particles')
     particlesJS('particles-js', this.particleSettings);
   }
 
   private initParticlesRotate() {
-    console.log('init particles rotate')
     const existingParticlesElement = document.getElementById('particles-js');
     if (existingParticlesElement) {
       existingParticlesElement.remove();
