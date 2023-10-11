@@ -16,6 +16,7 @@ import { LevelInfosComponent } from './level-infos/level-infos.component';
 import { PowerInfosComponent } from './power-infos/power-infos.component';
 import { Phase1Component } from './phase1/phase1.component';
 import { AdminComponent } from './admin/admin.component';
+import { DrawingZoneComponent } from './phase1/drawing-zone/drawing-zone.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AdminComponent } from './admin/admin.component';
     PowerInfosComponent,
     Phase1Component,
     AdminComponent,
+    DrawingZoneComponent,
   ],
   imports: [
     BrowserModule,
