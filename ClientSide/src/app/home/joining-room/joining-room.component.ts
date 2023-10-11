@@ -72,16 +72,29 @@ export class JoiningRoomComponent {
   }
 
   runPhase1() {
-    this.readyToPlay.emit();
-    const element = document.documentElement;
+    const element = document.documentElement as any;
+    if (element) {
+      if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen(); // Demande le mode plein écran
+      } else {
+        console.error('La méthode webkitRequestFullscreen n\'est pas prise en charge.');
+      }
+    }
     if (element.requestFullscreen) {
+      console.log('fullscreen')
       element.requestFullscreen();
     }
+    else if (!element.requestFullscreen) {
+      console.log('fullscreen impossible')
+    }
+
     if (window.screen.orientation) {
       (window.screen.orientation as any).lock('landscape').catch((error: any) => {
         console.error('Failed to lock screen orientation:', error);
       });
     }
+    this.readyToPlay.emit();
+
   }
 
 

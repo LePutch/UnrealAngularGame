@@ -1,0 +1,178 @@
+{
+	"asset":
+	{
+		"version": "2.0",
+		"generator": "Unreal Engine 5.2.1"
+	},
+	"scene": 0,
+	"accessors": [
+		{
+			"bufferView": 0,
+			"count": 1494,
+			"type": "SCALAR",
+			"componentType": 5123
+		},
+		{
+			"bufferView": 1,
+			"count": 729,
+			"type": "VEC3",
+			"componentType": 5126,
+			"min": [ -0.387307167, 0.259544849, -0.38136515 ],
+			"max": [ 0.36782223, 1.9178524, 0.297419131 ]
+		},
+		{
+			"bufferView": 2,
+			"count": 729,
+			"type": "VEC3",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 3,
+			"count": 729,
+			"type": "VEC4",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 4,
+			"count": 729,
+			"type": "VEC2",
+			"componentType": 5126
+		},
+		{
+			"bufferView": 5,
+			"count": 729,
+			"type": "VEC2",
+			"componentType": 5126
+		}
+	],
+	"buffers": [
+		{
+			"uri": "FirstPhase.bin",
+			"byteLength": 43812
+		}
+	],
+	"bufferViews": [
+		{
+			"buffer": 0,
+			"byteLength": 2988,
+			"target": 34963
+		},
+		{
+			"buffer": 0,
+			"byteLength": 8748,
+			"byteOffset": 2988,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 8748,
+			"byteOffset": 11736,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 11664,
+			"byteOffset": 20484,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 5832,
+			"byteOffset": 32148,
+			"target": 34962
+		},
+		{
+			"buffer": 0,
+			"byteLength": 5832,
+			"byteOffset": 37980,
+			"target": 34962
+		}
+	],
+	"images": [
+		{
+			"uri": "MI_Powerup_A_2_BaseColor.png"
+		},
+		{
+			"uri": "MI_Powerup_A_2_MetallicRoughness.png"
+		},
+		{
+			"uri": "MI_Powerup_A_2_Emissive.png"
+		}
+	],
+	"materials": [
+		{
+			"name": "MI_Powerup_A_2",
+			"pbrMetallicRoughness":
+			{
+				"baseColorTexture":
+				{
+					"index": 0
+				},
+				"metallicRoughnessTexture":
+				{
+					"index": 1
+				}
+			},
+			"emissiveTexture":
+			{
+				"index": 2
+			},
+			"emissiveFactor": [ 2.97070312, 2.97070312, 2.97070312 ]
+		}
+	],
+	"meshes": [
+		{
+			"name": "SM_Powerup_A",
+			"primitives": [
+				{
+					"attributes":
+					{
+						"POSITION": 1,
+						"NORMAL": 2,
+						"TANGENT": 3,
+						"TEXCOORD_0": 4,
+						"TEXCOORD_1": 5
+					},
+					"indices": 0,
+					"material": 0
+				}
+			]
+		}
+	],
+	"nodes": [
+		{
+			"name": "SM_Powerup_A3",
+			"translation": [ -21.2459469, -204.077347, -42.5222244 ],
+			"mesh": 0
+		}
+	],
+	"samplers": [
+		{
+			"minFilter": 9987,
+			"magFilter": 9729
+		}
+	],
+	"scenes": [
+		{
+			"name": "FirstPhase",
+			"nodes": [ 0 ]
+		}
+	],
+	"textures": [
+		{
+			"name": "MI_Powerup_A_2_BaseColor",
+			"sampler": 0,
+			"source": 0
+		},
+		{
+			"name": "MI_Powerup_A_2_MetallicRoughness",
+			"sampler": 0,
+			"source": 1
+		},
+		{
+			"name": "MI_Powerup_A_2_Emissive",
+			"sampler": 0,
+			"source": 2
+		}
+	]
+}

@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   connected: boolean = false;
   qrCode: boolean = false;
   joiningRoom: string = '';
+  admin: boolean = false;
 
   @Output()
   phase1 = new EventEmitter();
@@ -21,6 +22,13 @@ export class HomeComponent implements OnInit {
     if (room) {
       this.qrCode = true;
       this.joiningRoom = room;
+    }
+
+    // check if we are admin
+    const admin = urlParams.get('admin');
+    if (admin) {
+      console.log('admin');
+      this.admin = true;
     }
   }
 

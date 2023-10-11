@@ -1,7 +1,7 @@
-<div class="h-full bg-fuchsia-700 text-white text-xs">
+<div class="h-full  text-white text-xs">
     <div class="h-full flex flex-col">
-        <div class="h-1/6 bg-red-400">
-            <div class="items-center rounded-lg bg-">
+        <div class="h-1/6 ">
+            <div class="items-center rounded-lg">
                 <div class="flex items-center">
                     <div class="w-12 h-12 pl-2">
                         <div class="container">
@@ -51,69 +51,97 @@
                         </div>
                     </div>
                     <div class="ml-4">
-                        <div>Denial</div>
+                        <div class="fontTitle text-lg">{{phaseName}}</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="h-3/6 bg-blue-400">
+        <div class="h-4/6 ">
             <div class="pt-2 pb-2 h-full">
-                <div class="h-1/3 bg-red-700 flex items-center">
+                <div class="h-1/3  flex items-center">
                     <div class="flex items-center">
-                        <div class="w-8 h-8">
+                        <div class="h-full w-full">
                             <!-- MODELE 3D numéro 1 -->
+                            <canvas id="model1" class="w-full h-full"></canvas>
                         </div>
-                        <div class="p-2">Nombre 1</div>
+                        <div class="pr-2 -ml-4 flex flex-row ">
+                            <div class="text-green-500 text-lg font-bold">
+                                {{greenGems}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="h-1/3 bg-blue-700 flex items-center">
+                <div class="h-1/3  flex items-center">
                     <div class="flex items-center">
-                        <!-- MODELE 3D numéro 2 -->
-                        <span>Nombre 2</span>
+                        <div class="h-full w-full">
+                            <!-- MODELE 3D numéro 2 -->
+                            <canvas id="model2" class="w-full h-full"></canvas>
+                        </div>
+                        <div class="pr-2 -ml-4 flex flex-row ">
+                            <div class="text-blue-500 text-lg font-bold">
+                                {{blueGems}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="h-1/3 bg-green-700 flex items-center">
+                <div class="h-1/3  flex items-center">
                     <div class="flex items-center">
-                        <!-- MODELE 3D numéro 3 -->
-                        <span>Nombre 3</span>
+                        <div class="h-full w-full">
+                            <!-- MODELE 3D numéro 3 -->
+                            <canvas id="model3" class="w-full h-full"></canvas>
+                        </div>
+                        <div class="pr-2 -ml-4 flex flex-row ">
+                            <div class="text-rose-500 text-lg font-bold">
+                                {{redGems}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="h-3/6 bg-green-400 flex items-end">
-            <ul id="categories" class="clr">
-                <li class="pusher"></li>
-                <li>
-                    <div>
-                        <!-- <video autoplay loop muted>
-                            <source src="../../assets/testvid.mp4" type="video/mp4">
-                        </video> -->
-                        <img src="../../assets/rune1.png" alt="" />
-                    </div>
-                </li>
-                <li class="pusher"></li>
-                <li>
-                    <div>
-                        <img src="../../assets/rune1.png" alt="" />
-                    </div>
-                </li>
-                <li class="pusher"></li>
-                <li>
-                    <div>
-                        <img src="../../assets/rune1.png" alt="" />
-                    </div>
-                </li>
-                <li class="pusher"></li>
-                <li>
-                    <div>
-                        <img src="../../assets/rune1.png" alt="" />
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <img src="../../assets/rune1.png" alt="" />
-                    </div>
-                </li>
-            </ul>
+        <div class="h-1/6 flex items-end items-center justify-center pb-2">
+            <div class=" w-3/4 justify-center">
+                <ul id="categories" class="clr -mb-4">
+                    <li class="pusher"></li>
+                    <li>
+                        <div *ngIf="!phases.phase1">
+                            <video autoplay loop muted>
+                                <source src="../../assets/RuneVid/Rune1_red.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div *ngIf="phases.phase1">
+                            <video autoplay loop muted>
+                                <source src="../../assets/RuneVid/Rune1_blue.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div *ngIf="phases.phase2">
+                            <video autoplay loop muted>
+                                <source src="../../assets/RuneVid/Rune1_green.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="../../assets/rune1.png" alt="" />
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="../../assets/rune1.png" alt="" />
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="../../assets/rune1.png" alt="" />
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="../../assets/rune1.png" alt="" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+
     </div>

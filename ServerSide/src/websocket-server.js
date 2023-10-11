@@ -6,7 +6,7 @@ const { getIP, generateQRCode } = require('./utils');
 const { v4: uuidv4 } = require('uuid');
 
 const portClient = 8123;
-const IP_Server = '10.255.193.116';
+const IP_Server = '192.168.1.7';
 
 
 class WebSocketServer {
@@ -45,6 +45,13 @@ class WebSocketServer {
                 console.log(`Received message from socket ${socketId}: ${message}`);
             }
             switch (data.type) {
+
+                case 'createAdminRoom':
+                    this.handleCreateAdminRoom(socketId);
+                    break;
+                case 'draw':
+                    this.handleDraw(socketId, data.imageData);
+                    break;
                 case 'createRoom':
                     this.handleCreateRoom(socketId);
                     break;
@@ -63,6 +70,12 @@ class WebSocketServer {
                 case 'coordsCharacter':
                     this.handleCoords(socketId, data.content);
                     break;
+                case 'gems':
+                    this.handleGems(socketId, data.content);
+                    break;
+                case 'phase':
+                    this.handlePhase(socketId, data.content);
+                    break;
                 default:
                     // handle other message types here
                     break;
@@ -71,6 +84,64 @@ class WebSocketServer {
             console.error('Error parsing JSON:', error);
         }
     }
+
+    handleDraw(socketId, width, height, imageData) {
+        const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
+        if (room) {
+            const roomSockets = this.rooms.get(room);
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const drawMessage = JSON.stringify({ type: 'draw', imageData: imageData });
+                    roomSocket.send(drawMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    // find the room of the socket and the connections of the room
+    findRoom(socketId) {
+        const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
+        if (room) {
+            const roomSockets = this.rooms.get(room);
+            return roomSockets;
+        } else {
+            return null;
+        }
+    }
+
+    handlePhase(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const phaseMessage = JSON.stringify({ type: 'phase', content: content });
+                    roomSocket.send(phaseMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleGems(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const gemMessage = JSON.stringify({ type: 'gems', content: content });
+                    roomSocket.send(gemMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
 
     handleCoords(socketId, content) {
         const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
@@ -109,11 +180,8 @@ class WebSocketServer {
         console.log('roomCode', roomCode);
         this.rooms.set(roomCode, [socketId]);
 
-        generateQRCode(IP_Server, portClient, roomCode);
         const roomCreatedMessage = JSON.stringify({ type: 'roomCreated', codeRoom: roomCode });
         this.connections.get(socketId).send(roomCreatedMessage);
-
-
         // For self-host server (not implemented yet)
         /*
         const IP = getIP();
@@ -126,6 +194,15 @@ class WebSocketServer {
             this.connections.get(socketId).send(roomCreatedFailedMessage);
         }
         */
+    }
+
+    handleCreateAdminRoom(socketId) {
+        const roomCode = "admin";
+        console.log('roomCode', roomCode);
+        this.rooms.set(roomCode, [socketId]);
+
+        const roomCreatedMessage = JSON.stringify({ type: 'roomCreated', codeRoom: roomCode });
+        this.connections.get(socketId).send(roomCreatedMessage);
     }
 
     handleJoinRoom(socketId, roomCode) {

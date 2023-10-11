@@ -11,11 +11,33 @@ export class WebSocketConnexionService {
   private roomCode: string = '';
 
   constructor() {
-    this.socket$ = webSocket('ws://10.255.193.116:3000');
+    this.socket$ = webSocket('ws://192.168.1.7:3000');
   }
 
   getSocket(): Observable<any> {
     return this.socket$.asObservable();
+  }
+
+  sendDraw(imageData: string) {
+    const message = {
+      type: 'draw',
+      imageData: imageData
+    };
+    this.socket$.next(message);
+  }
+
+  sendAdminType(type: string) {
+    const message = {
+      type: type
+    };
+    this.socket$.next(message);
+  }
+  sendAdminTypeAndContent(typeToSend: string, contentToSend: string) {
+    const message = {
+      type: typeToSend,
+      content: contentToSend
+    };
+    this.socket$.next(message);
   }
 
   requestCoords() {
@@ -28,6 +50,13 @@ export class WebSocketConnexionService {
   createRoom() {
     const message = {
       type: 'createRoom'
+    };
+    this.socket$.next(message);
+  }
+
+  createAdminRoom() {
+    const message = {
+      type: 'createAdminRoom'
     };
     this.socket$.next(message);
   }

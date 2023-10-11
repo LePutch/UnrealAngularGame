@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { BoardInfosComponent } from './board-infos/board-infos.component'
 import { LevelInfosComponent } from './level-infos/level-infos.component';
 import { PowerInfosComponent } from './power-infos/power-infos.component';
 import { Phase1Component } from './phase1/phase1.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { Phase1Component } from './phase1/phase1.component';
     LevelInfosComponent,
     PowerInfosComponent,
     Phase1Component,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { Phase1Component } from './phase1/phase1.component';
     BrowserAnimationsModule,
     SharedModule,
     HomeModule,
+    HttpClientModule,
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 100,

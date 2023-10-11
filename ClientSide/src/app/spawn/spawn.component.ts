@@ -47,8 +47,5 @@ export class SpawnComponent {
     }
   }
 
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
+
 }

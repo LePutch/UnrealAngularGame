@@ -1,26 +1,29 @@
-<div class="h-full bg-orange-700 text-white" #hTotDiv>
-    <div class="h-1/3 w-full flex items-center justify-center">
+<div class="h-full text-white" #hTotDiv>
+    <div class="h-1/3 w-full pb-4 flex items-center justify-center">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
             [outerStrokeColor]="'#76C2AF'" [outerStrokeGradientStopColor]="'#58d256'" [innerStrokeColor]="'#ffffff'"
             [innerStrokeWidth]="5" [imageSrc]="'../../assets/Teleport.svg'" [imageHeight]="circleSize"
-            [imageWidth]="circleSize" [showImage]="true" [percent]="40" [backgroundColor]="'#213325'"
-            [showBackground]="true" [showInnerStroke]="false">
+            [imageWidth]="circleSize" [showImage]="true" [percent]="greenPercent" [backgroundColor]="'#213325'"
+            [showBackground]="true" [showInnerStroke]="false" [style.pointer-events]="greenGems >= 10 ? 'auto' : 'none'"
+            (click)="greenPowerActivate()">
         </circle-progress>
     </div>
-    <div class="h-1/3 w-full flex items-center justify-center">
+    <div class="h-1/3 pt-2 pb-2 w-full flex items-center justify-center">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
-            [outerStrokeColor]="'#76C2AF'" [outerStrokeGradientStopColor]="'#58d256'" [innerStrokeColor]="'#ffffff'"
-            [innerStrokeWidth]="5" [imageSrc]="'../../assets/Teleport.svg'" [imageHeight]="circleSize"
-            [imageWidth]="circleSize" [showImage]="true" [percent]="85" [backgroundColor]="'#213325'"
-            [showBackground]="true" [showInnerStroke]="false">
+            [outerStrokeColor]="'#6496ed'" [outerStrokeGradientStopColor]="'#284f94'" [innerStrokeColor]="'#ffffff'"
+            [innerStrokeWidth]="5" [imageSrc]="'../../assets/Eye.svg'" [imageHeight]="eyeSizeHeight"
+            [imageWidth]="eyeSizeWidth" [showImage]="true" [percent]="bluePercent" [backgroundColor]="'#092454'"
+            [showBackground]="true" [showInnerStroke]="false" [style.pointer-events]="blueGems >= 10 ? 'auto' : 'none'"
+            (click)="bluePowerActivate()">
         </circle-progress>
     </div>
-    <div class="h-1/3 w-full flex items-center justify-center">
+    <div class="h-1/3 pt-4 w-full flex items-center justify-center flex-col">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
-            [outerStrokeColor]="'#76C2AF'" [outerStrokeGradientStopColor]="'#58d256'" [innerStrokeColor]="'#ffffff'"
-            [innerStrokeWidth]="5" [imageSrc]="'../../assets/Teleport.svg'" [imageHeight]="circleSize"
-            [imageWidth]="circleSize" [showImage]="true" [percent]="62" [backgroundColor]="'#213325'"
-            [showBackground]="true" [showInnerStroke]="false">
+            [outerStrokeColor]="'#f04141'" [outerStrokeGradientStopColor]="'#610a0a'" [innerStrokeColor]="'#ffffff'"
+            [innerStrokeWidth]="5" [imageSrc]="'../../assets/Speed.svg'" [imageHeight]="speedSizeWidth"
+            [imageWidth]="speedSizeWidth" [showImage]="true" [percent]="redPercent" [backgroundColor]="'#380303'"
+            [showBackground]="true" [showInnerStroke]="false" [style.pointer-events]="redGems >= 10 ? 'auto' : 'none'"
+            (click)="redPowerActivate()">
         </circle-progress>
     </div>
 </div>
