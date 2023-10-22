@@ -45,15 +45,14 @@ export class MinimapPhase2Component {
     this.characterX = Math.max(this.gameMinX, Math.min(this.characterX, this.gameMaxX));
     this.characterY = Math.max(this.gameMinY, Math.min(this.characterY, this.gameMaxY));
 
-    const mapWidth = this.gameMaxX - this.gameMinX;
-    const mapHeight = this.gameMaxY - this.gameMinY;
-
     this.minimapPhase2Canvas.nativeElement.style.background = `url( ../../../../../assets/AngerMap/angerMinimap.png)`;
+    console.log("characterX: " + this.characterX + " characterY: " + this.characterY)
 
     // Calculez les coordonnées du personnage par rapport à la zone actuelle et mettez à jour le marqueur.
     const adjustedX = this.characterX - this.gameMinX;
     const adjustedY = this.characterY - this.gameMinY;
 
+    console.log("adjustedX: " + adjustedX + " adjustedY: " + adjustedY)
     this.updateCanvas(adjustedX, adjustedY);
   }
 
@@ -63,21 +62,14 @@ export class MinimapPhase2Component {
       return;
     }
 
-    // Calculez la largeur et la hauteur de la zone de jeu sur la minimap
-    const zoneWidth = this.gameMaxX - this.gameMinX;
-    const zoneHeight = this.gameMaxY - this.gameMinY;
-
-    // Calculez les coordonnées du joueur par rapport à la zone actuelle
-    const canvasX = ((adjustedX - this.gameMinX) / zoneWidth) * this.minimapPhase2Canvas.nativeElement.width;
-    const canvasY = ((adjustedY - this.gameMinY) / zoneHeight) * this.minimapPhase2Canvas.nativeElement.height;
-
-    // Assurez-vous que le marqueur du joueur ne dépasse pas les limites du canvas
-    const markerX = Math.max(0, Math.min(canvasX, this.minimapPhase2Canvas.nativeElement.width - this.customIcon.width));
-    const markerY = Math.max(0, Math.min(canvasY, this.minimapPhase2Canvas.nativeElement.height - this.customIcon.height));
+    const canvasX = (adjustedX / (this.gameMaxX - this.gameMinX)) * this.minimapPhase2Canvas.nativeElement.width - this.customIcon.width / 2;
+    const canvasY = (adjustedY / (this.gameMaxY - this.gameMinY)) * this.minimapPhase2Canvas.nativeElement.height - this.customIcon.height / 2;
 
     this.ctx.clearRect(0, 0, this.minimapPhase2Canvas.nativeElement.width, this.minimapPhase2Canvas.nativeElement.height);
-    this.ctx.drawImage(this.customIcon, markerX, markerY, this.customIcon.width, this.customIcon.height);
+    this.ctx.drawImage(this.customIcon, canvasX, canvasY, this.customIcon.width, this.customIcon.height);
+    console.log("canvasX: " + canvasX + " canvasY: " + canvasY)
   }
+
 
 
 }

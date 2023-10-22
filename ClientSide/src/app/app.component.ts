@@ -24,9 +24,9 @@ export class AppComponent {
 
   ngOnInit() {
     // this.test();
-    // this.phases.home = false;
-    // this.phases.phase1 = true;
-    // this.phases.spawn = false;
+    this.phases.home = false;
+    this.phases.phase2 = true;
+    this.phases.spawn = false;
     this.websocketService.getSocket()
       .pipe(
         takeUntil(this.unsubscribe$)

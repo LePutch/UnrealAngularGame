@@ -94,6 +94,9 @@ class WebSocketServer {
                 case 'power':
                     this.handlePower(socketId, data.content);
                     break;
+                case 'anger':
+                    this.handleAnger(socketId, data.content);
+                    break;
                 default:
                     // handle other message types here
                     break;
@@ -102,6 +105,22 @@ class WebSocketServer {
             console.error('Error parsing JSON:', error);
         }
     }
+
+    handleAnger(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const angerMessage = JSON.stringify({ type: 'anger', content: content });
+                    roomSocket.send(angerMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
 
     handlePower(socketId, content) {
         const roomSockets = this.findRoom(socketId);
