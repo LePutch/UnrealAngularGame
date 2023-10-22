@@ -1,4 +1,107 @@
-<p class="h-full text-white">
-    <app-drawing-zone></app-drawing-zone>
-</p>
-<!-- <button mat-raised-button class="green" (click)="sendTextureInfo()">GREEN Gems</button> -->
+<div class="h-full w-full text-white flex">
+    <div class="h-full w-2/3 border border-yellow-900">
+        <app-drawing-zone (imageEmitter)="sendImage($event)"></app-drawing-zone>
+        <!-- <button mat-raised-button class="green" (click)="sendEtapeSuivante()">Etape Suivante</button> -->
+    </div>
+    <div class="h-full w-1/3 p-1 border border-yellow-900 bg-white">
+
+        <!-- Step1 -->
+        <div *ngIf="step1" class="h-full  flex flex-col justify-between">
+            <div class="fontTitle text-lg text-black">Step 1 :</div>
+            <div class="row-span-1 h-full  w-full flex justify-center">
+                <img src="../../assets/lever/1green.png" alt="">
+            </div>
+            <div class="row-span-1 text-black flex items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center">
+                <img src="../../assets/lever/1yellow.png" alt="">
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center text-yellow-500">
+                <img src="../../assets/lever/1red.png" alt="">
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center text-red-500">
+                <img src="../../assets/lever/1blue.png" alt="">
+            </div>
+        </div>
+
+        <!-- Step2 -->
+        <div *ngIf="step2" class="h-full  flex flex-col justify-between">
+            <div class="fontTitle text-lg text-black">Step 2 :</div>
+            <div class="row-span-1 w-full flex justify-center text-green-500">
+                <span>Yellow</span>
+            </div>
+            <div class="row-span-1 text-black flex items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 w-full flex justify-center text-red-500">
+                <span>Blue</span>
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1  w-full flex justify-center text-yellow-500">
+                <span>Red</span>
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1  w-full flex justify-center text-blue-500">
+                <span>Green</span>
+            </div>
+        </div>
+
+
+
+        <!-- Step3 -->
+        <div *ngIf="step3" class="h-full  flex flex-col justify-between">
+            <div class="fontTitle text-lg text-black">Step 3 :</div>
+            <div class="row-span-1 h-full  w-full flex justify-center">
+                <img src="../../assets/lever/west.png" alt="">
+            </div>
+            <div class="row-span-1 text-black flex items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center">
+                <img src="../../assets/lever/nord.png" alt="">
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center text-yellow-500">
+                <img src="../../assets/lever/Sud.png" alt="">
+            </div>
+            <div class="row-span-1 flex text-black items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 h-full w-full flex justify-center text-red-500">
+                <img src="../../assets/lever/est.png" alt="">
+            </div>
+        </div>
+
+        <!-- Step4 -->
+        <div *ngIf="step4" class=" h-full flex flex-col justify-between">
+            <div class="fontTitle text-lg text-black">Step 4 :</div>
+            <div class="row-span-1 w-full flex justify-center">
+                <img src="../../assets/lever/keyDesk.png" alt="">
+            </div>
+            <div class="row-span-1 text-black flex items-center justify-center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </div>
+            <div class="row-span-1 w-full flex justify-center">
+                <img src="../../assets/lever/1free.png" alt="">
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { INITIAL_STATE, IPhase } from '../shared/shared-state';
 
 @Component({
@@ -6,7 +6,7 @@ import { INITIAL_STATE, IPhase } from '../shared/shared-state';
   templateUrl: './level-infos.component.html',
   styleUrls: ['./level-infos.component.scss']
 })
-export class LevelInfosComponent {
+export class LevelInfosComponent implements OnChanges {
   @Input()
   phases: IPhase;
 
@@ -14,8 +14,9 @@ export class LevelInfosComponent {
     this.phases = INITIAL_STATE;
   }
 
-  ngOnInit() {
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
   }
 
 

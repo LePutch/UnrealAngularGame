@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { BackgroundParticlesComponent } from './background-particles/background-particles.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +17,7 @@ import { BackgroundParticlesComponent } from './background-particles/background-
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    MatDialogModule
   ],
   exports: [
     MatButtonModule,

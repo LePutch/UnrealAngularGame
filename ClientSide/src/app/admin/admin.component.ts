@@ -23,8 +23,9 @@ export class AdminComponent {
       )
       .subscribe(
         (message) => {
-          console.log('Received:', message);
-          this.messageHandler(message);
+          if (message.type !== 'coords') {
+            console.log('Received:', message);
+          } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);
@@ -50,6 +51,10 @@ export class AdminComponent {
       this.message = message.message;
       this.connected = true;
     }
+  }
+
+  destroyNavy(where: string) {
+    this.websocketService.sendAdminTypeAndContent('destroyNavy', where);
   }
 
   greenGems() {

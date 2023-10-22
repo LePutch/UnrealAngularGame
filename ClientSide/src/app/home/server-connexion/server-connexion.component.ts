@@ -33,8 +33,9 @@ export class ServerConnexionComponent {
       .subscribe(
         (message) => {
           this.connexionStatus.emit("connected");
-          console.log('Received:', message);
-          // Traitez le message reçu ici
+          if (message.type !== 'coords') {
+            console.log('Received:', message);
+          }          // Traitez le message reçu ici
           if (message.type === 'roomCreated') {
             const roomCode = message.roomCode;
             this.websocketConnexionService.setRoomCode(roomCode);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormatType, NgWhiteboardService, WhiteboardElement, formatTypes } from 'ng-whiteboard';
 
 @Component({
@@ -7,6 +7,9 @@ import { FormatType, NgWhiteboardService, WhiteboardElement, formatTypes } from 
   styleUrls: ['./drawing-zone.component.scss']
 })
 export class DrawingZoneComponent {
+
+  @Output()
+  imageEmitter = new EventEmitter<string>();
 
   data: WhiteboardElement[] = [];
   color = '#333333';
@@ -24,6 +27,7 @@ export class DrawingZoneComponent {
     if (cb) {
       cb.writeText(img);
     }
+    this.imageEmitter.emit(img);
   }
 
   erase() {
@@ -34,9 +38,13 @@ export class DrawingZoneComponent {
     this.isSizeActive = false;
   }
   save(type: formatTypes) {
+    console.log("save")
     this.whiteboardService.save(type);
     this.isSaveActive = false;
   }
+
+
+
   undo() {
     this.whiteboardService.undo();
   }

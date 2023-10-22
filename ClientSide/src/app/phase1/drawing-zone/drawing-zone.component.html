@@ -6,7 +6,8 @@
 
     <div class="tools">
         <div class="">
-            <button (click)="$event.preventDefault(); $event.stopPropagation(); isSaveActive = !isSaveActive">
+            <button
+                (click)="$event.preventDefault(); $event.stopPropagation(); isSaveActive = !isSaveActive; save(formatType.Base64)">
                 <mat-icon>send</mat-icon>
             </button>
         </div>
@@ -45,15 +46,16 @@
         <button (click)="erase()">
             <mat-icon>delete</mat-icon> <!-- Icône pour "Erase" -->
         </button>
-        <button (click)="undo()">
-            <mat-icon>undo</mat-icon> <!-- Icône pour "Undo" -->
-        </button>
         <button (click)="redo()">
-            <mat-icon>redo</mat-icon> <!-- Icône pour "Redo" -->
+            <mat-icon>turn_right</mat-icon> <!-- Icône pour "Redo" -->
         </button>
-        <button (click)="openImageDialog()">
+        <button (click)="undo()">
+            <mat-icon>turn_left</mat-icon> <!-- Icône pour "Undo" -->
+        </button>
+
+        <!-- <button (click)="openImageDialog()">
             <mat-icon>photo_camera</mat-icon>
-        </button>
+        </button> -->
 
         <input id="colorInput" class="color-input" type="color" [value]="color" (input)="setColor($event)" />
         <label for="colorInput" class="color-label" [ngStyle]="{ 'background-color': color }"></label>

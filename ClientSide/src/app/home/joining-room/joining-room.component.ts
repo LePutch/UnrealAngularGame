@@ -29,8 +29,9 @@ export class JoiningRoomComponent {
       )
       .subscribe(
         (message) => {
-          console.log('Received:', message);
-          this.messageHandler(message);
+          if (message.type !== 'coords') {
+            console.log('Received:', message);
+          } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);

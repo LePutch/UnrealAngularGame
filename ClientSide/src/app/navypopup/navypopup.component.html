@@ -1,0 +1,12 @@
+<div class="text-xl h-full w-full shadow-2xl text-white bg-cyan-700 flex flex-col">
+    <h1 class="p-4 italic font-bold "> {{ data.title }}</h1>
+    <div class="p-4 ">
+        {{ data.content }}
+    </div>
+    <div class="flex p-4 flex-grow items-end justify-end">
+        <button class="bg-white text-cyan-700 flex justify-center items-center h-12 w-48 font-bold rounded-lg"
+            (click)="onNoClick()">
+            <mat-icon>favorite</mat-icon>
+        </button>
+    </div>
+</div>

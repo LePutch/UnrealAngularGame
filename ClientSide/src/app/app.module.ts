@@ -18,6 +18,10 @@ import { PowerInfosComponent } from './power-infos/power-infos.component';
 import { Phase1Component } from './phase1/phase1.component';
 import { AdminComponent } from './admin/admin.component';
 import { DrawingZoneComponent } from './phase1/drawing-zone/drawing-zone.component';
+import { NavypopupComponent } from './navypopup/navypopup.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Phase2Component } from './phase2/phase2.component';
+import { MinimapPhase2Component } from './phase2/minimap-phase2/minimap-phase2.component'; // Assurez-vous d'importer MatDialogModule
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { DrawingZoneComponent } from './phase1/drawing-zone/drawing-zone.compone
     Phase1Component,
     AdminComponent,
     DrawingZoneComponent,
+    NavypopupComponent,
+    Phase2Component,
+    MinimapPhase2Component
   ],
   imports: [
     BrowserModule,
@@ -40,6 +47,7 @@ import { DrawingZoneComponent } from './phase1/drawing-zone/drawing-zone.compone
     NgWhiteboardModule,
     HomeModule,
     HttpClientModule,
+    MatDialogModule,
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 100,

@@ -1,5 +1,5 @@
 <div class="h-full text-white" #hTotDiv>
-    <div class="h-1/3 w-full pb-4 flex items-center justify-center">
+    <div class="h-1/3 w-full pb-4 flex items-center justify-center" [class.grayscale]="applyGreenGrayscale">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
             [outerStrokeColor]="'#76C2AF'" [outerStrokeGradientStopColor]="'#58d256'" [innerStrokeColor]="'#ffffff'"
             [innerStrokeWidth]="5" [imageSrc]="'../../assets/Teleport.svg'" [imageHeight]="circleSize"
@@ -8,7 +8,7 @@
             (click)="greenPowerActivate()">
         </circle-progress>
     </div>
-    <div class="h-1/3 pt-2 pb-2 w-full flex items-center justify-center">
+    <div class="h-1/3 pt-2 pb-2 w-full flex items-center justify-center" [class.grayscale]="applyBlueGrayscale">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
             [outerStrokeColor]="'#6496ed'" [outerStrokeGradientStopColor]="'#284f94'" [innerStrokeColor]="'#ffffff'"
             [innerStrokeWidth]="5" [imageSrc]="'../../assets/Eye.svg'" [imageHeight]="eyeSizeHeight"
@@ -17,7 +17,7 @@
             (click)="bluePowerActivate()">
         </circle-progress>
     </div>
-    <div class="h-1/3 pt-4 w-full flex items-center justify-center flex-col">
+    <div class="h-1/3 pt-4 w-full flex items-center justify-center flex-col" [class.grayscale]="applyRedGrayscale">
         <circle-progress [radius]="radiusBar" [space]="-5" [outerStrokeGradient]="true" [outerStrokeWidth]="5"
             [outerStrokeColor]="'#f04141'" [outerStrokeGradientStopColor]="'#610a0a'" [innerStrokeColor]="'#ffffff'"
             [innerStrokeWidth]="5" [imageSrc]="'../../assets/Speed.svg'" [imageHeight]="speedSizeWidth"

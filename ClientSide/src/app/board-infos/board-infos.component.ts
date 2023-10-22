@@ -57,15 +57,19 @@ export class BoardInfosComponent {
   alreadyResized = true;
 
   private unsubscribe$ = new Subject<void>();
-  phaseName: string = '';
+  phaseName: string = 'Denial';
+  applyRedGrayscale: boolean = true;
+  applyBlueGrayscale: boolean = true;
+  applyGreenGrayscale: boolean = true;
 
   ngOnInit() {
     // this.test();
     this.websocketService.getSocket()
       .subscribe(
         (message) => {
-          console.log('Received:', message);
-          this.messageHandler(message);
+          if (message.type !== 'coords') {
+            console.log('Received:', message);
+          } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);
@@ -91,16 +95,47 @@ export class BoardInfosComponent {
 
   messageHandler(message: any) {
     if (message.type === 'gems') {
-      if (message.content === 'red') {
+      if (message.content === 'red' && this.redGems < 50) {
+        this.applyRedGrayscale = false;
         this.redGems++;
       }
-      if (message.content === 'blue') {
+      if (message.content === 'blue' && this.blueGems < 50) {
+        this.applyBlueGrayscale = false;
         this.blueGems++;
       }
-      if (message.content === 'green') {
+      if (message.content === 'green' && this.greenGems < 50) {
+        this.applyGreenGrayscale = false;
         this.greenGems++;
       }
+      if (message.content === 'bigRed' && this.redGems <= 50) {
+        this.applyRedGrayscale = false;
+        if (this.redGems + 10 > 50) {
+          this.redGems = 50;
+        }
+        else {
+          this.redGems = this.redGems + 10;
+        }
+      }
+      if (message.content === 'bigBlue' && this.blueGems <= 50) {
+        this.applyBlueGrayscale = false;
+        if (this.blueGems + 10 > 50) {
+          this.blueGems = 50;
+        }
+        else {
+          this.blueGems = this.blueGems + 10;
+        }
+      }
+      if (message.content === 'bigGreen' && this.greenGems <= 50) {
+        this.applyGreenGrayscale = false;
+        if (this.greenGems + 10 > 50) {
+          this.greenGems = 50;
+        }
+        else {
+          this.greenGems = this.greenGems + 10;
+        }
+      }
     }
+
     if (message.type === 'phase') {
       this.phaseName = message.content;
     }

@@ -39,6 +39,9 @@ export class PowerInfosComponent {
   }
 
   private unsubscribe$ = new Subject<void>();
+  applyRedGrayscale: boolean = true;
+  applyBlueGrayscale: boolean = true;
+  applyGreenGrayscale: boolean = true;
 
   ngOnInit() {
     this.updateDimensions();
@@ -64,16 +67,49 @@ export class PowerInfosComponent {
 
   messageHandler(message: any) {
     if (message.type === 'gems') {
-      if (message.content === 'red') {
+      if (message.content === 'red' && this.redGems < 50) {
+        this.applyRedGrayscale = false;
         this.redGems++;
         this.redPercent = this.redGems * 10;
       }
-      if (message.content === 'blue') {
+      if (message.content === 'blue' && this.blueGems < 50) {
+        this.applyBlueGrayscale = false;
         this.blueGems++;
         this.bluePercent = this.blueGems * 10;
       }
-      if (message.content === 'green') {
+      if (message.content === 'green' && this.greenGems < 50) {
+        this.applyGreenGrayscale = false;
         this.greenGems++;
+        this.greenPercent = this.greenGems * 10;
+      }
+      if (message.content === 'bigRed' && this.redGems <= 50) {
+        this.applyRedGrayscale = false;
+        if (this.redGems + 10 > 50) {
+          this.redGems = 50;
+        }
+        else {
+          this.redGems = this.redGems + 10;
+        }
+        this.redPercent = this.redGems * 10;
+      }
+      if (message.content === 'bigBlue' && this.blueGems <= 50) {
+        this.applyBlueGrayscale = false;
+        if (this.blueGems + 10 > 50) {
+          this.blueGems = 50;
+        }
+        else {
+          this.blueGems = this.blueGems + 10;
+        }
+        this.bluePercent = this.blueGems * 10;
+      }
+      if (message.content === 'bigGreen' && this.greenGems <= 50) {
+        this.applyGreenGrayscale = false;
+        if (this.greenGems + 10 > 50) {
+          this.greenGems = 50;
+        }
+        else {
+          this.greenGems = this.greenGems + 10;
+        }
         this.greenPercent = this.greenGems * 10;
       }
     }
@@ -82,18 +118,21 @@ export class PowerInfosComponent {
   bluePowerActivate() {
     this.blueGems = this.blueGems - 10;
     this.bluePercent = this.blueGems * 10;
+    this.websocketService.sendClientTypeAndContent('power', 'blue');
     this.gemsEmitter.emit('blue');
   }
 
   redPowerActivate() {
     this.redGems = this.redGems - 10;
     this.redPercent = this.redGems * 10;
+    this.websocketService.sendClientTypeAndContent('power', 'red');
     this.gemsEmitter.emit('red');
   }
 
   greenPowerActivate() {
     this.greenGems = this.greenGems - 10;
     this.greenPercent = this.greenGems * 10;
+    this.websocketService.sendClientTypeAndContent('power', 'green');
     this.gemsEmitter.emit('green');
   }
 

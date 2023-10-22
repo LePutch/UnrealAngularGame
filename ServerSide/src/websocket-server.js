@@ -40,12 +40,27 @@ class WebSocketServer {
 
     handleMessage(socketId, message) {
         try {
+
             const data = JSON.parse(message);
-            if (data.type !== 'coordsCharacter') {
+            if (data.type !== 'coordsCharacter' && data.type !== 'draw') {
                 console.log(`Received message from socket ${socketId}: ${message}`);
             }
             switch (data.type) {
-
+                case 'navy':
+                    this.handleNavy(socketId, data.content);
+                    break;
+                case 'navyDestroy':
+                    this.handleNavyDestroy(socketId, data.content);
+                    break;
+                case 'resetLevers':
+                    this.handleResetLever(socketId);
+                    break;
+                case 'nextLevelLevers':
+                    this.handlenextLevelLevers(socketId);
+                    break;
+                case 'lever':
+                    this.handleLever(socketId, data.color);
+                    break;
                 case 'createAdminRoom':
                     this.handleCreateAdminRoom(socketId);
                     break;
@@ -76,6 +91,9 @@ class WebSocketServer {
                 case 'phase':
                     this.handlePhase(socketId, data.content);
                     break;
+                case 'power':
+                    this.handlePower(socketId, data.content);
+                    break;
                 default:
                     // handle other message types here
                     break;
@@ -85,7 +103,97 @@ class WebSocketServer {
         }
     }
 
-    handleDraw(socketId, width, height, imageData) {
+    handlePower(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const powerMessage = JSON.stringify({ type: 'power', content: content });
+                    roomSocket.send(powerMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleNavy(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const navyMessage = JSON.stringify({ type: 'navy', content: content });
+                    roomSocket.send(navyMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleNavyDestroy(socketId, content) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const navyDestroyMessage = JSON.stringify({ type: 'navyDestroy', content: content });
+                    roomSocket.send(navyDestroyMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handlenextLevelLevers(socketId) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const nextLevelLeversMessage = JSON.stringify({ type: 'nextLevelLevers' });
+                    roomSocket.send(nextLevelLeversMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleResetLever(socketId) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const resetLeverMessage = JSON.stringify({ type: 'resetLevers' });
+                    roomSocket.send(resetLeverMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleLever(socketId, color) {
+        const roomSockets = this.findRoom(socketId);
+        if (roomSockets) {
+            for (const roomId of roomSockets) {
+                if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
+                    const roomSocket = this.connections.get(roomId);
+                    const leverMessage = JSON.stringify({ type: 'lever', color: color });
+                    roomSocket.send(leverMessage);
+                }
+            }
+        } else {
+            // Le socket ne fait pas partie d'une salle, traitement alternatif...
+        }
+    }
+
+    handleDraw(socketId, imageData) {
         const room = Array.from(this.rooms.keys()).find(roomCode => this.rooms.get(roomCode).includes(socketId));
         if (room) {
             const roomSockets = this.rooms.get(room);
@@ -93,6 +201,7 @@ class WebSocketServer {
                 if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
                     const roomSocket = this.connections.get(roomId);
                     const drawMessage = JSON.stringify({ type: 'draw', imageData: imageData });
+                    console.log("ça dessine")
                     roomSocket.send(drawMessage);
                 }
             }

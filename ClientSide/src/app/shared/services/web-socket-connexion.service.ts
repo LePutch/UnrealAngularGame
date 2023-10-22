@@ -40,6 +40,21 @@ export class WebSocketConnexionService {
     this.socket$.next(message);
   }
 
+  sendClientTypeAndContent(typeToSend: string, contentToSend: string) {
+    const message = {
+      type: typeToSend,
+      content: contentToSend
+    };
+    this.socket$.next(message);
+  }
+
+  sendClientType(type: string) {
+    const message = {
+      type: type
+    };
+    this.socket$.next(message);
+  }
+
   requestCoords() {
     const message = {
       type: 'coords'
