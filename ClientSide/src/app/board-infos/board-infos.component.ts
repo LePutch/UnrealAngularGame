@@ -79,14 +79,12 @@ export class BoardInfosComponent {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
   }
@@ -204,7 +202,6 @@ export class BoardInfosComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    console.log('resize')
     this.alreadyResized = false;
     if (this.alreadyResized) {
       setTimeout(() => {

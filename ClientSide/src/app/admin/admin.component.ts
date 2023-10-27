@@ -24,14 +24,12 @@ export class AdminComponent {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
 

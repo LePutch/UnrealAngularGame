@@ -30,14 +30,12 @@ export class JoiningRoomComponent {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           } this.messageHandler(message);
         },
         (err) => {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
 
@@ -81,11 +79,9 @@ export class JoiningRoomComponent {
       }
     }
     if (element.requestFullscreen) {
-      console.log('fullscreen')
       element.requestFullscreen();
     }
     else if (!element.requestFullscreen) {
-      console.log('fullscreen impossible')
     }
 
     if (window.screen.orientation) {

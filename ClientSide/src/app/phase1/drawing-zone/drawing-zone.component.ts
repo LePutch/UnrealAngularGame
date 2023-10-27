@@ -38,7 +38,6 @@ export class DrawingZoneComponent {
     this.isSizeActive = false;
   }
   save(type: formatTypes) {
-    console.log("save")
     this.whiteboardService.save(type);
     this.isSaveActive = false;
   }

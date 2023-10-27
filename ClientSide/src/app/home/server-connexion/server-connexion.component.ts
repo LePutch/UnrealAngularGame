@@ -34,7 +34,6 @@ export class ServerConnexionComponent {
         (message) => {
           this.connexionStatus.emit("connected");
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           }          // Traitez le message reçu ici
           if (message.type === 'roomCreated') {
             const roomCode = message.roomCode;
@@ -47,7 +46,6 @@ export class ServerConnexionComponent {
         },
         () => {
           this.connexionStatus.emit("disconnected");
-          console.log('WebSocket connection closed.');
         }
       );
 

@@ -16,7 +16,6 @@ export class LevelInfosComponent implements OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
 

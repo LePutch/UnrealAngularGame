@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
     // check if we are admin
     const admin = urlParams.get('admin');
     if (admin) {
-      console.log('admin');
       this.admin = true;
     }
   }

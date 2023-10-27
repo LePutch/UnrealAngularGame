@@ -42,7 +42,6 @@ export class Phase1Component implements OnInit, OnChanges {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           }
           this.messageHandler(message);
         },
@@ -50,7 +49,6 @@ export class Phase1Component implements OnInit, OnChanges {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
   }
@@ -66,7 +64,6 @@ export class Phase1Component implements OnInit, OnChanges {
 
   handleLever(color: string) {
     this.activerLevier(color);
-    console.log(this.levers);
   }
 
 
@@ -99,8 +96,6 @@ export class Phase1Component implements OnInit, OnChanges {
     let tousCorrects = true;
 
     for (const couleur of etapeCourante) {
-      console.log("lever", this.levers)
-      console.log("bonnecouleur", couleur)
       if (!this.levers.get(couleur)) {
         tousCorrects = false;
         break;
@@ -137,7 +132,6 @@ export class Phase1Component implements OnInit, OnChanges {
     }
     if (this.etapeActuelle === this.etapes.length) {
       // Toutes les étapes sont terminées, vous pouvez gérer la victoire ici
-      console.log('Vous avez terminé le puzzle !');
     } else {
       // Réinitialisez les leviers pour la prochaine étape
       this.resetLevers();
@@ -162,7 +156,6 @@ export class Phase1Component implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   sendImage(base64Image: any) {

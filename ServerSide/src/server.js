@@ -19,7 +19,6 @@ const webSocketServer = new WebSocketServer(server);
 
 app.get('/downloadQRCode/:roomCode', (req, res) => {
     const roomCode = req.params.roomCode;
-    console.log('Try to download', roomCode);
 
     const link = `http://${IP_Server}:${portClient}?room=${roomCode}`;
 

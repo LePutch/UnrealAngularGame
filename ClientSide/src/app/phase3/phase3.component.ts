@@ -24,7 +24,6 @@ export class Phase3Component {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           }
           this.messageHandler(message);
         },
@@ -32,13 +31,11 @@ export class Phase3Component {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
 

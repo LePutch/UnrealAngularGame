@@ -23,7 +23,6 @@ export class SpawnComponent {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           }
           this.messageHandler(message);
         },
@@ -31,7 +30,6 @@ export class SpawnComponent {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
   }

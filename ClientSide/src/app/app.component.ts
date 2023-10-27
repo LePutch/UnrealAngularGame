@@ -35,7 +35,6 @@ export class AppComponent {
       .subscribe(
         (message) => {
           if (message.type !== 'coords') {
-            console.log('Received:', message);
           }
           this.messageHandler(message);
         },
@@ -43,7 +42,6 @@ export class AppComponent {
           console.error('Error:', err);
         },
         () => {
-          console.log('WebSocket connection closed.');
         }
       );
   }
@@ -89,7 +87,6 @@ export class AppComponent {
     }
     if (where === 'ride') {
       this.wantARide = true;
-      console.log('want a ride true')
     }
 
   }
@@ -113,14 +110,12 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.websocketService.sendClientTypeAndContent('navyDestroy', contentToSend);
     });
   }
 
 
   handlePhase(phase: string) {
-    console.log(phase, this.phases)
 
     switch (phase) {
 

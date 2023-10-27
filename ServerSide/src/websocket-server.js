@@ -43,7 +43,6 @@ class WebSocketServer {
 
             const data = JSON.parse(message);
             if (data.type !== 'coordsCharacter' && data.type !== 'draw') {
-                console.log(`Received message from socket ${socketId}: ${message}`);
             }
             switch (data.type) {
                 case 'navy':
