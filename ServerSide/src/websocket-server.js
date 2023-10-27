@@ -97,6 +97,9 @@ class WebSocketServer {
                 case 'anger':
                     this.handleAnger(socketId, data.content);
                     break;
+                case 'print':
+                    this.handlePrint(socketId);
+                    break;
                 default:
                     // handle other message types here
                     break;
@@ -104,6 +107,11 @@ class WebSocketServer {
         } catch (error) {
             console.error('Error parsing JSON:', error);
         }
+    }
+
+    handlePrint(socketId) {
+        // print all rooms and connections in the server
+        console.log("rooms", this.rooms);
     }
 
     handleAnger(socketId, content) {
@@ -220,7 +228,6 @@ class WebSocketServer {
                 if (roomId !== socketId) { // Vérifier que ce n'est pas le même socket
                     const roomSocket = this.connections.get(roomId);
                     const drawMessage = JSON.stringify({ type: 'draw', imageData: imageData });
-                    console.log("ça dessine")
                     roomSocket.send(drawMessage);
                 }
             }

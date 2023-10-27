@@ -21,7 +21,16 @@ import { DrawingZoneComponent } from './phase1/drawing-zone/drawing-zone.compone
 import { NavypopupComponent } from './navypopup/navypopup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Phase2Component } from './phase2/phase2.component';
-import { MinimapPhase2Component } from './phase2/minimap-phase2/minimap-phase2.component'; // Assurez-vous d'importer MatDialogModule
+import { MinimapPhase2Component } from './phase2/minimap-phase2/minimap-phase2.component';
+import { PincodeComponent } from './phase2/pincode/pincode.component';
+import { PopupPincodeComponent } from './phase2/popup-pincode/popup-pincode.component';
+import { NoteComponent } from './phase2/note/note.component';
+import { PopupNoteComponent } from './phase2/popup-note/popup-note.component';
+import { GhostpowerComponent } from './phase2/ghostpower/ghostpower.component';
+import { Phase3Component } from './phase3/phase3.component';
+import { MinimapPhase3Component } from './phase3/minimap-phase3/minimap-phase3.component';
+import { Phase4Component } from './phase4/phase4.component';
+import { MinimapPhase4Component } from './phase4/minimap-phase4/minimap-phase4.component'; // Assurez-vous d'importer MatDialogModule
 
 @NgModule({
   declarations: [
@@ -37,7 +46,16 @@ import { MinimapPhase2Component } from './phase2/minimap-phase2/minimap-phase2.c
     DrawingZoneComponent,
     NavypopupComponent,
     Phase2Component,
-    MinimapPhase2Component
+    MinimapPhase2Component,
+    PincodeComponent,
+    PopupPincodeComponent,
+    NoteComponent,
+    PopupNoteComponent,
+    GhostpowerComponent,
+    Phase3Component,
+    MinimapPhase3Component,
+    Phase4Component,
+    MinimapPhase4Component
   ],
   imports: [
     BrowserModule,

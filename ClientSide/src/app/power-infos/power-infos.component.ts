@@ -29,10 +29,14 @@ export class PowerInfosComponent {
   greenGems: number = 0;
   blueGems: number = 0;
   redGems: number = 0;
-
+  showTP: boolean = false;
   bluePercent: number = 0;
   redPercent: number = 0;
   greenPercent: number = 0;
+
+  flipFlopRise: boolean = true;
+  spawnToRiseText: string = "Are you sure to go in Rise ?";
+  riseToSpawnText: string = "Are you sure to return to Orilon ?";
 
   constructor(private ngProgress: NgProgress, private renderer: Renderer2, private websocketService: WebSocketConnexionService) {
     this.phases = INITIAL_STATE
@@ -92,15 +96,20 @@ export class PowerInfosComponent {
         }
         this.redPercent = this.redGems * 10;
       }
+      if (message.content === 'infiniteRed') {
+        this.applyRedGrayscale = false;
+        this.redGems = 100000000;
+        this.redPercent = this.redGems * 100000000;
+      }
       if (message.content === 'bigBlue' && this.blueGems <= 50) {
         this.applyBlueGrayscale = false;
         if (this.blueGems + 10 > 50) {
           this.blueGems = 50;
         }
         else {
-          this.blueGems = this.blueGems + 10;
+          this.blueGems = this.blueGems + 100000000;
         }
-        this.bluePercent = this.blueGems * 10;
+        this.bluePercent = this.blueGems * 100000000;
       }
       if (message.content === 'bigGreen' && this.greenGems <= 50) {
         this.applyGreenGrayscale = false;
@@ -108,9 +117,9 @@ export class PowerInfosComponent {
           this.greenGems = 50;
         }
         else {
-          this.greenGems = this.greenGems + 10;
+          this.greenGems = this.greenGems + 100000000;
         }
-        this.greenPercent = this.greenGems * 10;
+        this.greenPercent = this.greenGems * 100000000;
       }
     }
   }
@@ -118,7 +127,7 @@ export class PowerInfosComponent {
   bluePowerActivate() {
     this.blueGems = this.blueGems - 10;
     this.bluePercent = this.blueGems * 10;
-    this.websocketService.sendClientTypeAndContent('power', 'blue');
+    this.websocketService.sendClientTypeAndContent('anger', 'ghost');
     this.gemsEmitter.emit('blue');
   }
 
@@ -130,10 +139,17 @@ export class PowerInfosComponent {
   }
 
   greenPowerActivate() {
-    this.greenGems = this.greenGems - 10;
-    this.greenPercent = this.greenGems * 10;
+    this.showTP = true;
+  }
+
+  noShowTp() {
+    this.showTP = false;
+  }
+
+  TpToRise() {
+    this.showTP = false;
+    this.flipFlopRise = !this.flipFlopRise;
     this.websocketService.sendClientTypeAndContent('power', 'green');
-    this.gemsEmitter.emit('green');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

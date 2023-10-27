@@ -30,6 +30,16 @@ export class BoardInfosComponent {
   blueGems: number = 0;
   redGems: number = 0;
 
+  denialBlue: boolean = true;
+  denialGreen: boolean = false;
+
+  depressionBlue: boolean = false;
+  depressionOrange: boolean = true;
+  depressionGreen: boolean = false;
+
+  angerBlue: boolean = false;
+  angerOrange: boolean = true;
+  angerGreen: boolean = false;
 
 
   JPGFile = '../../assets/OBJTEST/Textures1.PNG';
@@ -57,10 +67,11 @@ export class BoardInfosComponent {
   alreadyResized = true;
 
   private unsubscribe$ = new Subject<void>();
-  phaseName: string = 'Denial';
+  phaseName: string = 'Denial House';
   applyRedGrayscale: boolean = true;
   applyBlueGrayscale: boolean = true;
   applyGreenGrayscale: boolean = true;
+  showInfiniteRed: boolean = false;
 
   ngOnInit() {
     // this.test();
@@ -125,6 +136,9 @@ export class BoardInfosComponent {
           this.blueGems = this.blueGems + 10;
         }
       }
+      if (message.content === 'infiniteRed') {
+        this.showInfiniteRed = true;
+      }
       if (message.content === 'bigGreen' && this.greenGems <= 50) {
         this.applyGreenGrayscale = false;
         if (this.greenGems + 10 > 50) {
@@ -136,8 +150,45 @@ export class BoardInfosComponent {
       }
     }
 
+    if (message.type === 'navy') {
+      if (message.content === 'lastRoomAnger') {
+        this.phaseName = 'Anger Room';
+      }
+      if (message.content === 'tomb') {
+        this.denialBlue = false;
+        this.denialGreen = true;
+        this.angerOrange = false;
+        this.angerBlue = true;
+      }
+      if (message.content === 'bluePower') {
+        this.angerBlue = false;
+        this.angerGreen = true;
+        this.depressionOrange = false;
+        this.depressionBlue = true;
+      }
+      if (message.content === 'tombRise') {
+        this.depressionBlue = false;
+        this.depressionGreen = true;
+      }
+    }
+
+
     if (message.type === 'phase') {
-      this.phaseName = message.content;
+      if (message.content === 'phase1') {
+        this.phaseName = 'Denial House';
+      }
+      if (message.content === 'phase2') {
+        this.phaseName = 'Wandering Desert';
+      }
+      if (message.content === 'phase3') {
+        this.phaseName = 'Depression';
+      }
+      if (message.content === 'spawn') {
+        this.phaseName = 'Lost Forest';
+      }
+      if (message.content === 'phase4') {
+        this.phaseName = 'Rise';
+      }
     }
   }
 

@@ -1,1 +1,12 @@
-<app-minimap-phase2 [characterX]="characterX" [characterY]="characterY"></app-minimap-phase2>
+<!-- ... Autre contenu HTML ... -->
+
+<div *ngIf="showMinimap">
+    <app-minimap-phase2 [characterX]="characterX" [characterY]="characterY"></app-minimap-phase2>
+</div>
+<app-popup-pincode (codeEntered)="switchPopup($event)" *ngIf="showPincodePopup"></app-popup-pincode>
+<app-popup-note (dataSaved)="savedNoteData($event)" [savedDataToRestore]="noteData"
+    (codeEntered)="switchPopupNote($event)" *ngIf="showNotePopup"></app-popup-note>
+<div *ngIf="noteButton" class=" flex pt-1  items-center justify-center">
+    <button mat-raised-button color="accent" (click)="switchPopupNote(true)">Take notes...</button>
+</div>
+<app-ghostpower *ngIf="showGhostPower"></app-ghostpower>

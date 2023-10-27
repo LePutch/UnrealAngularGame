@@ -1,0 +1,27 @@
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+.pincode-container input {
+    margin-right: 10px;
+    /* Ajoutez l'espacement horizontal souhaité */
+}
+
+.correct-feedback {
+    color: green;
+}
+
+.incorrect-feedback {
+    color: red;
+}

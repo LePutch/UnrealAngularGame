@@ -1,18 +1,36 @@
-<div class="zindex fixed top-0 left-0 right-0 flex flex-col items-center pt-8 h-screen justify-center">
-    <div class="text-3xl mb-4 text-white text-center">You'll always be with him...</div>
-    <!-- <app-header></app-header>
-    <div class=" flex flex-row items-center justify-center gap-4">
-        <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-green-500 text-white" (click)="SendGreenLantern()">
-            <mat-icon>emoji_objects</mat-icon> Green
+<div class="zindex fixed top-0 left-0 right-0 flex flex-col items-center flex justify-center">
+    <div class="text-4xl fontTitle1 text-white text-center">
+        Welcome to Aethera
+    </div>
+    <div class="text-sm fontTitle pt-4 w-5/6 text-white text-center">
+        As you start this adventure, remember that you are not alone. One of you, <span
+            style="color: rgb(163, 255, 163);">Eben</span>, will venture into a realm of wonder:
+        Aethera, while the other embodies the spirit of <span style="color: rgb(163, 255, 163);">Aurora</span>, his
+        departed beloved, guiding him as
+        a petite fairy. This is a cooperative experience that symbolizes the phases of grief, mirroring the emotional
+        journey of those who have loved and lost. From denial to anger, depression, and, eventually, the path to
+        rebuilding, you will traverse these stages together.
+    </div>
+    <div class="text-sm fontTitle pt-4 w-5/6 text-white text-center">
+        <div>
+            To communicate, Eben must interact with the in-game world, while Aurora will provide guidance through
+            dialogues
+            and actions on the phone. For the player emboding Aurora, messages will appear on the screen in <span
+                style="color: rgb(129, 199, 236);">blue boxes</span>, you have to read them aloud to inform Eben about
+            the situation.
+        </div>
+        <div class="text-accent fontTitle pt-1">
+            Until the first blue box, Aurora should refrain from speaking aloud !
+        </div>
+    </div>
+
+    <div class="text-sm fontTitle pb-4 pt-1 w-5/6 text-white text-center">
+        When you feel ready to embark on this journey, press the button to enter the adventure.
+    </div>
+    <div class="">
+        <button mat-raised-button class="text-lg bg-red-500  text-white" (click)="runPhase1()">
+            <mat-icon>videogame_asset</mat-icon> Join Aethera
         </button>
-        <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="SendRedLantern()">
-            <mat-icon>emoji_objects</mat-icon> Red
-        </button>
-        <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="SendCoords()">
-            <mat-icon>location_on</mat-icon> Coordinates
-        </button>
-    </div> -->
-    <button mat-raised-button class="text-lg py-2 px-4 mb-2 bg-red-500 text-white" (click)="runPhase1()">
-        <mat-icon>videogame_asset</mat-icon> Ready to play
-    </button>
+    </div>
+
 </div>

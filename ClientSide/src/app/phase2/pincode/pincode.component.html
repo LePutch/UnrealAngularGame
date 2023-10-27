@@ -1,0 +1,58 @@
+<div class="flex flex-col items-center justify-center h-screen">
+    <div class="grid grid-cols-3 gap-2">
+        <button [ngClass]="{
+          'bg-red-500': !isButtonClicked[0] && isWrongCode,
+          'bg-blue-500': !isButtonClicked[0] && !isWrongCode,
+          'bg-green-500': isButtonClicked[0] && !isWrongCode,
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(0)">1</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[1] && !isWrongCode,
+          'bg-green-500': isButtonClicked[1] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[1],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(1)">2</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[2] && !isWrongCode,
+          'bg-green-500': isButtonClicked[2] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[2],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(2)">3</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[3] && !isWrongCode,
+          'bg-green-500': isButtonClicked[3] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[3],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(3)">4</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[4] && !isWrongCode,
+          'bg-green-500': isButtonClicked[4] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[4],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(4)">5</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[5] && !isWrongCode,
+          'bg-green-500': isButtonClicked[5] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[5],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(5)">6</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[6] && !isWrongCode,
+          'bg-green-500': isButtonClicked[6] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[6],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(6)">7</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[7] && !isWrongCode,
+          'bg-green-500': isButtonClicked[7] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[7],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(7)">8</button>
+        <button [ngClass]="{
+          'bg-blue-500': !isButtonClicked[8] && !isWrongCode,
+          'bg-green-500': isButtonClicked[8] && !isWrongCode,
+          'bg-red-500': isWrongCode && !isButtonClicked[8],
+          'checking': isChecking
+        }" class="w-16 h-16 rounded-full text-white" (click)="onNumberClick(8)">9</button>
+    </div>
+</div>

@@ -41,7 +41,6 @@ export class JoiningRoomComponent {
         }
       );
 
-    this.joinRoom();
   }
 
 
@@ -95,7 +94,7 @@ export class JoiningRoomComponent {
       });
     }
     this.readyToPlay.emit();
-
+    this.joinRoom();
   }
 
 

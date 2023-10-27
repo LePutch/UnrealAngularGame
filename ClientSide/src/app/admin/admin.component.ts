@@ -53,6 +53,14 @@ export class AdminComponent {
     }
   }
 
+  code() {
+    this.websocketService.sendAdminTypeAndContent('anger', 'code')
+  }
+
+  noCode() {
+    this.websocketService.sendAdminTypeAndContent('anger', 'noCode')
+  }
+
   destroyNavy(where: string) {
     this.websocketService.sendAdminTypeAndContent('destroyNavy', where);
   }
@@ -71,6 +79,17 @@ export class AdminComponent {
 
   phase(phase: string) {
     this.websocketService.sendAdminTypeAndContent('phase', phase);
+  }
+
+  angerLastRoom() {
+    this.websocketService.sendAdminTypeAndContent('anger', 'lastRoom');
+  }
+  navyRide() {
+    this.websocketService.sendAdminTypeAndContent('navy', 'ride');
+  }
+
+  printRooms() {
+    this.websocketService.sendAdminTypeAndContent('print', 'rooms');
   }
 
 }

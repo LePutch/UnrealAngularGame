@@ -1,0 +1,41 @@
+/* pinpad.component.css */
+:host {
+    height: 100vh;
+    // background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans';
+}
+
+.pin-container {
+    background: #212121;
+    width: 20em;
+    min-width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em;
+    border-radius: 0.3em;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    margin: auto;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.checking {
+    animation: checkingAnimation 1s linear infinite alternate;
+}
+
+@keyframes checkingAnimation {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+
+/* Add other CSS styles as needed */

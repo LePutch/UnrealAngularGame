@@ -1,0 +1,57 @@
+<div class="relative h-full w-full">
+    <button class="bg-red-500 p-2 m-2 absolute rounded-full" (click)="closeNote()">
+        <div class="h-12 w-12 flex items-center justify-center">
+            <mat-icon class="text-white custom-icon">close</mat-icon>
+
+        </div>
+    </button>
+    <div class="h-full w-full">
+        <ng-whiteboard [data]="data" [strokeColor]="color" [fill]="color" [backgroundColor]="backgroundColor"
+            [strokeWidth]="size" (save)="onSave($event)"></ng-whiteboard>
+    </div>
+
+    <div class="tools">
+        <div class="size-dropdown">
+            <button (click)="$event.preventDefault(); $event.stopPropagation(); isSizeActive = !isSizeActive">
+                <mat-icon>straighten</mat-icon>
+            </button>
+            <ul class="dropdown" [ngClass]="{ active: isSizeActive }">
+                <li class="dropdown-item" (click)="setSize(2)" [class.selected]="size === 2">
+                    <svg height="100%" width="100%">
+                        <line x1="0" y1="50%" x2="100" y2="50%" style="stroke-width: 2.5px"
+                            [ngStyle]="{ stroke: color }" />
+                    </svg>
+                </li>
+                <li class="dropdown-item" (click)="setSize(5)" [class.selected]="size === 5">
+                    <svg height="100%" width="100%">
+                        <line x1="0" y1="50%" x2="100" y2="50%" style="stroke-width: 5px"
+                            [ngStyle]="{ stroke: color }" />
+                    </svg>
+                </li>
+                <li class="dropdown-item" (click)="setSize(10)" [class.selected]="size === 10">
+                    <svg height="100%" width="100%">
+                        <line x1="0" y1="50%" x2="100" y2="50%" style="stroke-width: 10px"
+                            [ngStyle]="{ stroke: color }" />
+                    </svg>
+                </li>
+                <li class="dropdown-item" (click)="setSize(15)" [class.selected]="size === 15">
+                    <svg height="100%" width="100%">
+                        <line x1="0" y1="50%" x2="100" y2="50%" style="stroke-width: 15px"
+                            [ngStyle]="{ stroke: color }" />
+                    </svg>
+                </li>
+            </ul>
+        </div>
+
+        <button (click)="erase()">
+            <mat-icon>delete</mat-icon> <!-- Icône pour "Erase" -->
+        </button>
+
+        <input id="colorInput" class="color-input" type="color" [value]="color" (input)="setColor($event)" />
+        <label for="colorInput" class="color-label" [ngStyle]="{ 'background-color': color }"></label>
+
+
+
+
+    </div>
+</div>

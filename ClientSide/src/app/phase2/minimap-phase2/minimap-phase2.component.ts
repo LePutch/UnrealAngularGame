@@ -45,7 +45,7 @@ export class MinimapPhase2Component {
     this.characterX = Math.max(this.gameMinX, Math.min(this.characterX, this.gameMaxX));
     this.characterY = Math.max(this.gameMinY, Math.min(this.characterY, this.gameMaxY));
 
-    this.minimapPhase2Canvas.nativeElement.style.background = `url( ../../../../../assets/AngerMap/angerMinimap.png)`;
+    this.minimapPhase2Canvas.nativeElement.style.background = `url( ../../../../../assets/AngerMap/angerMinimapGood.png)`;
     console.log("characterX: " + this.characterX + " characterY: " + this.characterY)
 
     // Calculez les coordonnées du personnage par rapport à la zone actuelle et mettez à jour le marqueur.
